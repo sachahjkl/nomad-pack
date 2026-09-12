@@ -37,6 +37,22 @@ job [[ var "name" . | quote ]] {
       auto_revert       = true
     }
 
+    restart {
+      attempts = 3
+      interval = "10m"
+      delay    = "15s"
+      mode     = "fail"
+    }
+
+    reschedule {
+      attempts       = 3
+      interval       = "1h"
+      delay          = "30s"
+      delay_function = "exponential"
+      max_delay      = "5m"
+      unlimited      = false
+    }
+
     network {
       mode = "host"
 
@@ -49,8 +65,9 @@ job [[ var "name" . | quote ]] {
       driver = "docker"
 
       config {
-        image = [[ var "image" . | quote ]]
-        ports = ["http"]
+        image        = [[ var "image" . | quote ]]
+        network_mode = "services"
+        ports        = ["http"]
 [[ range $path := var "config_modules" . ]]
 [[ fileContents $path ]]
 [[ end ]]
