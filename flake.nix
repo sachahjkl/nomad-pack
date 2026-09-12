@@ -1,5 +1,5 @@
 {
-  description = "Generic Nomad Pack for homelab applications";
+  description = "Generic Nomad Pack for applications";
 
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2605";
@@ -19,7 +19,7 @@
       inherit system;
       config.allowUnfreePredicate = package: nixpkgs.lib.getName package == "nomad";
     };
-    pack = pkgs.runCommand "homelab-nomad-pack" {} ''
+    pack = pkgs.runCommand "application-pack" {} ''
       mkdir -p "$out/templates"
       cp ${./metadata.hcl} "$out/metadata.hcl"
       cp ${./variables.hcl} "$out/variables.hcl"
@@ -36,7 +36,7 @@
         trim-trailing-whitespace.enable = true;
       };
     };
-    packCheck = pkgs.runCommand "homelab-nomad-pack-check" {nativeBuildInputs = [pkgs.nomad pkgs.nomad-pack];} ''
+    packCheck = pkgs.runCommand "application-pack-check" {nativeBuildInputs = [pkgs.nomad pkgs.nomad-pack];} ''
       export HOME="$TMPDIR"
       cat >vars.hcl <<'EOF'
       name = "example"
@@ -51,7 +51,7 @@
       volume_name = ""
       EOF
       nomad-pack render ${pack} --var-file vars.hcl --to-dir rendered --auto-approve >/dev/null
-      nomad job validate rendered/homelab-application/application.nomad
+      nomad job validate rendered/application/application.nomad
       touch "$out"
     '';
   in {
