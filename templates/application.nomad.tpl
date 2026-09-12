@@ -15,6 +15,10 @@ job [[ var "name" . | quote ]] {
   group "web" {
     count = 1
 
+[[ range $path := var "group_modules" . ]]
+[[ fileContents $path ]]
+[[ end ]]
+
 [[ if var "volume_enabled" . ]]
     volume "data" {
       type            = "host"
@@ -47,7 +51,14 @@ job [[ var "name" . | quote ]] {
       config {
         image = [[ var "image" . | quote ]]
         ports = ["http"]
+[[ range $path := var "config_modules" . ]]
+[[ fileContents $path ]]
+[[ end ]]
       }
+
+[[ range $path := var "task_modules" . ]]
+[[ fileContents $path ]]
+[[ end ]]
 
 [[ if var "volume_enabled" . ]]
       volume_mount {
@@ -77,8 +88,8 @@ job [[ var "name" . | quote ]] {
       }
 
       resources {
-        cpu    = 200
-        memory = 256
+        cpu    = [[ var "resource_cpu" . ]]
+        memory = [[ var "resource_memory" . ]]
       }
 
       logs {

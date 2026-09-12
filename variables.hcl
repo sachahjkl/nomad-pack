@@ -30,6 +30,29 @@ variable "port" {
   type = number
 }
 
+variable "resource_cpu" {
+  type = number
+}
+
+variable "resource_memory" {
+  type = number
+}
+
+variable "config_modules" {
+  type    = list(string)
+  default = []
+}
+
+variable "group_modules" {
+  type    = list(string)
+  default = []
+}
+
+variable "task_modules" {
+  type    = list(string)
+  default = []
+}
+
 variable "service_tags" {
   type = list(string)
 }

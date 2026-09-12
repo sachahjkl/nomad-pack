@@ -51,9 +51,16 @@
       environment = "staging"
       datacenter = "example"
       node_class = "general"
+      resource_cpu = 200
+      resource_memory = 256
+      config_modules = []
+      group_modules = []
+      task_modules = []
       health_path = "/health"
       image = "ghcr.io/sachahjkl/example@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
       port = 8080
+      resource_cpu = 200
+      resource_memory = 256
       service_tags = []
       volume_enabled = false
       volume_mount_path = ""
