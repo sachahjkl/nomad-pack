@@ -10,6 +10,14 @@ variable "environment" {
   type = string
 }
 
+variable "datacenter" {
+  type = string
+}
+
+variable "node_class" {
+  type = string
+}
+
 variable "health_path" {
   type = string
 }

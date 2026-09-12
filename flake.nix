@@ -49,6 +49,8 @@
       name = "example"
       domain = "example.sacha.house"
       environment = "staging"
+      datacenter = "example"
+      node_class = "general"
       health_path = "/health"
       image = "ghcr.io/sachahjkl/example@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
       port = 8080

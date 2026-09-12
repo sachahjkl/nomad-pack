@@ -1,6 +1,6 @@
 job [[ var "name" . | quote ]] {
   namespace   = [[ var "environment" . | quote ]]
-  datacenters = ["homelab"]
+  datacenters = [ [[ var "datacenter" . | quote ]] ]
   type        = "service"
 
   meta {
@@ -9,7 +9,7 @@ job [[ var "name" . | quote ]] {
 
   constraint {
     attribute = "${node.class}"
-    value     = "general"
+    value     = [[ var "node_class" . | quote ]]
   }
 
   group "web" {
