@@ -16,7 +16,7 @@ job [[ var "name" . | quote ]] {
     count = 1
 
 [[ range $path := var "group_modules" . ]]
-[[ fileContents $path ]]
+[[ tpl (fileContents $path) $ ]]
 [[ end ]]
 
 [[ if var "volume_enabled" . ]]
@@ -69,12 +69,12 @@ job [[ var "name" . | quote ]] {
         network_mode = "services"
         ports        = ["http"]
 [[ range $path := var "config_modules" . ]]
-[[ fileContents $path ]]
+[[ tpl (fileContents $path) $ ]]
 [[ end ]]
       }
 
 [[ range $path := var "task_modules" . ]]
-[[ fileContents $path ]]
+[[ tpl (fileContents $path) $ ]]
 [[ end ]]
 
 [[ if var "volume_enabled" . ]]
