@@ -1,0 +1,2 @@
+name=nomad-pack
+description=A generic Nomad Pack for deploying containerized applications through Nomad and Traefik with modular configuration.
