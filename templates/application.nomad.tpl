@@ -32,8 +32,8 @@ job [[ var "name" . | quote ]] {
       max_parallel      = 1
       health_check      = "checks"
       min_healthy_time  = "10s"
-      healthy_deadline  = "2m"
-      progress_deadline = "5m"
+      healthy_deadline  = "10m"
+      progress_deadline = "15m"
       auto_revert       = true
     }
 
