@@ -1,0 +1,15 @@
+name: "nomad-pack"
+description: "A generic Nomad Pack for deploying containerized applications through Nomad and Traefik with modular configuration."
+topics:
+  - "nomad"
+  - "nomad-pack"
+  - "traefik"
+  - "docker"
+  - "infrastructure-as-code"
+  - "hcl"
+  - "deployment"
+homepage: "https://github.com/sachahjkl/nomad-pack"
+source:
+  provider: github
+  namespace: "sachahjkl"
+  path: "sachahjkl/nomad-pack"
